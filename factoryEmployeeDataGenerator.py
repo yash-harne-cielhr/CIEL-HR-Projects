@@ -9,7 +9,7 @@ import pandas as pd
 # ========================
 PARENT_COMPANY = "CLRA Registers Management Pvt Ltd"
 ASSOCIATE_COMPANY = "CLRA Associates 1"
-Establishment_type = "Shops"
+Establishment_type = "Factory"
 NUM_EMPLOYEES = 10
 
 # For Shops
