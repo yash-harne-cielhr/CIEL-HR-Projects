@@ -189,6 +189,8 @@ def generate_employee_master():
             "Temporary Address": f"{random.randint(1,999)} {random.choice(['MG Road','Park Street','1st Avenue','Lake View','Station Road'])}, {random.choice(['Mumbai','Delhi','Bangalore','Chennai','Kolkata'])}, {random.choice(['Maharashtra','Delhi','Karnataka','Tamil Nadu','West Bengal'])} - {random.randint(100000,999999)}" if random.random() < 0.5 else "",
             "Reason of exit": random.choice(["Resigned", "Terminated", "Retired", ""]) if dol_value != "" else "",
             "Tenure of Employment": random.randint(0, 5) if random.random() < 0.8 else "",
+            "Mobile": str(random.randint(6000000000, 9999999999)) if random.random() < 0.8 else "",
+            "Email": (employee_name.lower().replace(" ", ".").replace("..", ".")+ str(random.randint(1, 999))+ "@gmail.com") if random.random() < 0.8 else "",
         }
 
         employees.append(emp)
@@ -431,6 +433,8 @@ def generate_wages(employees, year, month):
             "ESI Place": "" if esi == 0 else random.choice(["Mumbai", "Pune", "Nagpur", "Thane", "Bangalore", "Bhopal", ""]),
             "ESI Date Of Payment": "" if esi == 0 else random_date_in_month(year, month_num).strftime("%d-%m-%Y") if random.random() < 0.8 else "",
             # "Work Days": 20,
+            "Overtime Paid Date": (random_date_in_month(year, month_num).strftime("%d-%m-%Y")if random.random() < 0.8 else ""),
+            "TDS": random.randint(0, 5000) if random.random() < 0.8 else 0,
         })
     return pd.DataFrame(rows)
 

@@ -10,7 +10,7 @@ import pandas as pd
 PARENT_COMPANY = "CLRA Registers Management Pvt Ltd"
 ASSOCIATE_COMPANY = "CLRA Associates 1"
 Establishment_type = "Factory"
-NUM_EMPLOYEES = 10
+NUM_EMPLOYEES = 150
 
 # For Shops
 LOCATION_GROUPS = [
@@ -21,40 +21,40 @@ LOCATION_GROUPS = [
     # {"STATE": "Chhattisgarh", "LOCATION": "CT-RI"},
     # {"STATE": "Delhi", "LOCATION": "DH-RA"},
     # {"STATE": "Goa", "LOCATION": "GO-PA"},
-    # {"STATE": "Gujarat", "LOCATION": "GU-AN"},
-    # {"STATE": "Haryana", "LOCATION": "HA-FA"},
-    # {"STATE": "Karnataka", "LOCATION": "KA-WF"},
+    {"STATE": "Gujarat", "LOCATION": "GU-AN"},
+    {"STATE": "Haryana", "LOCATION": "HA-FA"},
+    {"STATE": "Karnataka", "LOCATION": "KA-WF"},
     # {"STATE": "Kerala", "LOCATION": "KE-KO"},
     # {"STATE": "Madhya Pradesh", "LOCATION": "MP-IN"},
     # {"STATE": "Maharashtra", "LOCATION": "MH-NA"},
     # {"STATE": "Odisha", "LOCATION": "OD-RO"},
     # {"STATE": "Puducherry", "LOCATION": "PU-PU"},
     # {"STATE": "Punjab", "LOCATION": "PJ-MO"},
-    # {"STATE": "Rajasthan", "LOCATION": "RA-UD"},
-    # {"STATE": "Tamil Nadu", "LOCATION": "TN-TR"},
-    # {"STATE": "Telangana", "LOCATION": "TE-HY"},
+    {"STATE": "Rajasthan", "LOCATION": "RA-UD"},
+    {"STATE": "Tamil Nadu", "LOCATION": "TN-TR"},
+    {"STATE": "Telangana", "LOCATION": "TE-HY"},
     # {"STATE": "Uttar Pradesh", "LOCATION": "UP-NO"},
     # {"STATE": "West Bengal", "LOCATION": "WB-SI"}
 ]
 
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-BASE_PATH = r"C:\Users\Yash Harne\OneDrive\Desktop\Ezycomp\Shops"
-OUTPUT_FOLDER = os.path.join(BASE_PATH, f"{ASSOCIATE_COMPANY}_{timestamp}")
+BASE_PATH = r"C:\Users\Yash Harne\OneDrive\Desktop\Ezycomp\Factory"
+OUTPUT_FOLDER = os.path.join(BASE_PATH, f"Stag_{ASSOCIATE_COMPANY}_{timestamp}")
 
 # Define all periods you want here (year, month_name)
 PERIODS = [
-    (2024, "January"),
-    (2024, "February"),
-    (2024, "March"),
-    (2024, "April"),
-    (2024, "May"),
-    (2024, "June"),
-    (2024, "July"),
-    (2024, "August"),
-    (2024, "September"),
-    (2024, "October"),
-    (2024, "November"),
-    (2024, "December"),
+    # (2024, "January"),
+    # (2024, "February"),
+    # (2024, "March"),
+    # (2024, "April"),
+    # (2024, "May"),
+    # (2024, "June"),
+    # (2024, "July"),
+    # (2024, "August"),
+    # (2024, "September"),
+    # (2024, "October"),
+    # (2024, "November"),
+    # (2024, "December"),
     
     (2025, "January"),
     (2025, "February"),
@@ -70,7 +70,18 @@ PERIODS = [
     (2025, "December"),
     
     (2026, "January"),
-    (2026, "February")
+    (2026, "February"),
+    (2026, "March"),
+    (2026, "April"),
+    (2026, "May"),
+    # (2026, "June"),
+    # (2026, "July"),
+    # (2026, "August"),
+    # (2026, "September"),
+    # (2026, "October"),
+    # (2026, "November"),
+    # (2026, "December"),
+
 ]
 
 
@@ -85,7 +96,7 @@ surnames = ["Sharma","Verma","Patel","Reddy","Nair","Gupta","Kulkarni","Joshi","
 # Helpers
 # ========================
 def random_leave_type():
-    return random.choice(["PL", "EL", "SL", "CL", "ML", "AL", "LOP", "HFD"])
+    return random.choice(["PL", "EL", "SL", "CL", "ML", "AL", "LOP", "HFD", "WL", "COFF"])
 
 def random_date_in_month(year, month_num):
     days_in_month = calendar.monthrange(year, month_num)[1]
@@ -132,26 +143,38 @@ def generate_employee_master():
             father_name = f"{random.choice(male_firstnames)} {surname}"
             husband_name = f"{random.choice(male_firstnames)} {random.choice(surnames)}"
 
-        # -------------------------
-        # DOB (1989–2003)
-        # -------------------------
-        dob_date = datetime.date(
-            random.randint(1989, 2003),
-            random.randint(1, 12),
-            random.randint(1, 28)
-        )
+            # 15% employees below 18
+        is_minor = random.random() < 0.15
+
+        if is_minor:
+            dob_date = datetime.date(
+                random.randint(2008, 2011),  # Age roughly 14–18 in 2025
+                random.randint(1, 12),
+                random.randint(1, 28)
+            )
+        else:
+            dob_date = datetime.date(
+                random.randint(1989, 2007),
+                random.randint(1, 12),
+                random.randint(1, 28)
+            )
 
         # -------------------------
-        # DOJ (>= DOB + 18 AND between 2024–2025)
-        # -------------------------
-        min_doj_year = max(dob_date.year + 18, 2024)
+        if is_minor:
+            # Allow minor employees to join
+            min_doj_year = max(dob_date.year + 14, 2024)
+        else:
+            min_doj_year = max(dob_date.year + 18, 2024)
 
         if min_doj_year > 2025:
             min_doj_year = 2025
 
+        # -------------------------
+        # DOJ
+        # -------------------------
         doj_date = datetime.date(
             random.randint(min_doj_year, 2025),
-            random.randint(10, 12),
+            random.randint(1, 12),
             random.randint(1, 28)
         )
 
@@ -182,7 +205,7 @@ def generate_employee_master():
             "ASSOCIATE COMPANY": ASSOCIATE_COMPANY,
             "STATE": group["STATE"],
             "LOCATION": group["LOCATION"],
-            "Employee Code": f"SHOPS{i+1:03d}",
+            "Employee Code": f"F{i+1:03d}",
             "Employee name": employee_name,
             "Gender": gender,
             "Date of Birth": dob_date.strftime("%d-%m-%Y"),
@@ -206,6 +229,8 @@ def generate_employee_master():
             "Temporary Address": f"{random.randint(1,999)} {random.choice(['MG Road','Park Street','1st Avenue','Lake View','Station Road'])}, {random.choice(['Mumbai','Delhi','Bangalore','Chennai','Kolkata'])}, {random.choice(['Maharashtra','Delhi','Karnataka','Tamil Nadu','West Bengal'])} - {random.randint(100000,999999)}" if random.random() < 0.5 else "",
             "Reason of exit": random.choice(["Resigned", "Terminated", "Retired", ""]) if dol_value != "" else "",
             "Tenure of Employment": random.randint(0, 5) if random.random() < 0.8 else "",
+            "Mobile": str(random.randint(6000000000, 9999999999)) if random.random() < 0.8 else "",
+            "Email": (employee_name.lower().replace(" ", ".").replace("..", ".")+ str(random.randint(1, 999))+ "@gmail.com") if random.random() < 0.8 else "",
         }
 
         employees.append(emp)
@@ -220,6 +245,14 @@ def generate_employee_master():
 def generate_leave_credit(employees, year, month):
     rows = []
     for emp in employees:
+        # WL Logic
+        wl_open = random.choice([0, 1])
+        wl_monthly = 1
+        if wl_open == 1:
+            wl_closing = 0
+        else:
+            wl_closing = 1
+
         rows.append({
             "PARENT COMPANY": PARENT_COMPANY,
             "ASSOCIATE COMPANY": ASSOCIATE_COMPANY,
@@ -239,6 +272,9 @@ def generate_leave_credit(employees, year, month):
             "CL Closing balance": random.randint(0, 7),
             "ML Opening balance": 0 if emp["Gender"] == "Male" else random.randint(0, 2),
             "ML Closing balance": 0 if emp["Gender"] == "Male" else random.randint(0, 2),
+            "WL Monthly credit": wl_monthly,
+            "WL Opening balance": wl_open,
+            "WL Closing balance": wl_closing,
         })
     return pd.DataFrame(rows)
 
@@ -254,10 +290,16 @@ def generate_leave_availed(employees, year, month):
 
         leave_type = random_leave_type()
 
-        # ✅ If Half Day Leave
+        # Half Day Leave
         if leave_type == "HFD":
             no_of_days = 0.5
-            end_date = start_date  # optional: keep same date for half day
+            end_date = start_date
+
+        # Weekly Leave can only be 1 day
+        elif leave_type == "WL":
+            no_of_days = 1
+            end_date = start_date
+
         else:
             no_of_days = (end_date - start_date).days + 1
 
@@ -306,21 +348,71 @@ def generate_attendance(employees, year, month):
         }
         present_count = 0
 
+        # Track available COFF balance
+        coff_balance = 0
+
         for d in days:
+
             day_num = int(d)
+
             if day_num > days_in_month:
                 mark = ""
+
             else:
+
                 weekday = datetime.date(year, month_num, day_num).weekday()
+
+                # =====================================
+                # WEEK OFF LOGIC
+                # =====================================
                 if weekday in (5, 6):
-                    mark = "WO"
+
+                    worked_on_wo = random.random() < 0.25
+
+                    if worked_on_wo:
+                        mark = "P"
+                        present_count += 1
+
+                        # Employee earned one COFF
+                        coff_balance += 1
+
+                    else:
+                        mark = "WO"
+
+                # =====================================
+                # WORKING DAY LOGIC
+                # =====================================
                 else:
+
+                    available_marks = [
+                        "P", "PL", "EL", "SL",
+                        "CL", "ML", "AL",
+                        "LOP", "HFD", "WL", ""
+                    ]
+
+                    weights = [
+                        70, 5, 5, 5,
+                        5, 2, 2,
+                        2, 2, 2, 3
+                    ]
+
+                    # Allow COFF only if balance available
+                    if coff_balance > 0:
+                        available_marks.append("COFF")
+                        weights.append(3)
+
                     mark = random.choices(
-                        ["P", "PL", "EL", "SL", "CL", "ML", "AL", "LOP", "HFD", ""],
-                        [70, 5, 5, 5, 5, 2, 2, 2, 2, 2]
+                        available_marks,
+                        weights
                     )[0]
+
+                    # Consume COFF
+                    if mark == "COFF":
+                        coff_balance -= 1
+
                     if mark == "P":
                         present_count += 1
+
             row[d] = mark
 
         row["Present Days"] = present_count
@@ -443,6 +535,8 @@ def generate_wages(employees, year, month):
             "ESI Place": "" if esi == 0 else random.choice(["Mumbai", "Pune", "Nagpur", "Thane", "Bangalore", "Bhopal", ""]),
             "ESI Date Of Payment": "" if esi == 0 else random_date_in_month(year, month_num).strftime("%d-%m-%Y") if random.random() < 0.8 else "",
             # "Work Days": 20,
+            "Overtime Paid Date": (random_date_in_month(year, month_num).strftime("%d-%m-%Y")if random.random() < 0.8 else ""),
+            "TDS": random.randint(0, 5000) if random.random() < 0.8 else 0,
         })
     return pd.DataFrame(rows)
 

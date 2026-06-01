@@ -7,8 +7,8 @@ import pandas as pd
 # ========================
 # CONFIG
 # ========================
-PARENT_COMPANY = "CLRA Registers Management Pvt Ltd"
-ASSOCIATE_COMPANY = "CLRA Associates 1"
+PARENT_COMPANY = "License Management Services"
+ASSOCIATE_COMPANY = "License Management 1"
 Establishment_type = "Shops"
 NUM_EMPLOYEES = 10
 
@@ -31,7 +31,7 @@ LOCATION_GROUPS = [
     # {"STATE": "Puducherry", "LOCATION": "PU-PU"},
     # {"STATE": "Punjab", "LOCATION": "PJ-MO"},
     # {"STATE": "Rajasthan", "LOCATION": "RA-UD"},
-    # {"STATE": "Tamil Nadu", "LOCATION": "TN-TR"},
+    {"STATE": "Tamil Nadu", "LOCATION": "TN-SL-Office 1"},
     # {"STATE": "Telangana", "LOCATION": "TE-HY"},
     # {"STATE": "Uttar Pradesh", "LOCATION": "UP-NO"},
     # {"STATE": "West Bengal", "LOCATION": "WB-SI"}
@@ -43,22 +43,22 @@ OUTPUT_FOLDER = os.path.join(BASE_PATH, f"{ASSOCIATE_COMPANY}_{timestamp}")
 
 # Define all periods you want here (year, month_name)
 PERIODS = [
-    (2024, "January"),
-    (2024, "February"),
-    (2024, "March"),
-    (2024, "April"),
-    (2024, "May"),
-    (2024, "June"),
-    (2024, "July"),
-    (2024, "August"),
-    (2024, "September"),
-    (2024, "October"),
-    (2024, "November"),
-    (2024, "December"),
+    # (2024, "January"),
+    # (2024, "February"),
+    # (2024, "March"),
+    # (2024, "April"),
+    # (2024, "May"),
+    # (2024, "June"),
+    # (2024, "July"),
+    # (2024, "August"),
+    # (2024, "September"),
+    # (2024, "October"),
+    # (2024, "November"),
+    # (2024, "December"),
     
-    (2025, "January"),
-    (2025, "February"),
-    (2025, "March"),
+    # (2025, "January"),
+    # (2025, "February"),
+    # (2025, "March"),
     (2025, "April"),
     (2025, "May"),
     (2025, "June"),
@@ -70,7 +70,15 @@ PERIODS = [
     (2025, "December"),
     
     (2026, "January"),
-    (2026, "February")
+    (2026, "February"),
+    (2026, "March"),
+    (2026, "April"),
+    (2026, "May"),
+    (2026, "June"),
+    (2026, "July"),
+    (2026, "August"),
+    (2026, "September"),
+
 ]
 
 
@@ -206,6 +214,9 @@ def generate_employee_master():
             "Temporary Address": f"{random.randint(1,999)} {random.choice(['MG Road','Park Street','1st Avenue','Lake View','Station Road'])}, {random.choice(['Mumbai','Delhi','Bangalore','Chennai','Kolkata'])}, {random.choice(['Maharashtra','Delhi','Karnataka','Tamil Nadu','West Bengal'])} - {random.randint(100000,999999)}" if random.random() < 0.5 else "",
             "Reason of exit": random.choice(["Resigned", "Terminated", "Retired", ""]) if dol_value != "" else "",
             "Tenure of Employment": random.randint(0, 5) if random.random() < 0.8 else "",
+            "Mobile": str(random.randint(6000000000, 9999999999)) if random.random() < 0.8 else "",
+            "Email": (employee_name.lower().replace(" ", ".").replace("..", ".")+ str(random.randint(1, 999))+ "@gmail.com") if random.random() < 0.8 else "",
+
         }
 
         employees.append(emp)
@@ -443,6 +454,8 @@ def generate_wages(employees, year, month):
             "ESI Place": "" if esi == 0 else random.choice(["Mumbai", "Pune", "Nagpur", "Thane", "Bangalore", "Bhopal", ""]),
             "ESI Date Of Payment": "" if esi == 0 else random_date_in_month(year, month_num).strftime("%d-%m-%Y") if random.random() < 0.8 else "",
             # "Work Days": 20,
+            "Overtime Paid Date": (random_date_in_month(year, month_num).strftime("%d-%m-%Y")if random.random() < 0.8 else ""),
+            "TDS": random.randint(0, 5000) if random.random() < 0.8 else 0,
         })
     return pd.DataFrame(rows)
 
