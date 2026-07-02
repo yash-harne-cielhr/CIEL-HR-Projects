@@ -7,10 +7,10 @@ import pandas as pd
 # ========================
 # CONFIG
 # ========================
-PARENT_COMPANY = "License Management Services"
-ASSOCIATE_COMPANY = "License Management 1"
+PARENT_COMPANY = "KT Company"
+ASSOCIATE_COMPANY = "KT Company"
 Establishment_type = "Shops"
-NUM_EMPLOYEES = 10
+NUM_EMPLOYEES = 5
 
 # For Shops
 LOCATION_GROUPS = [
@@ -26,12 +26,12 @@ LOCATION_GROUPS = [
     # {"STATE": "Karnataka", "LOCATION": "KA-WF"},
     # {"STATE": "Kerala", "LOCATION": "KE-KO"},
     # {"STATE": "Madhya Pradesh", "LOCATION": "MP-IN"},
-    # {"STATE": "Maharashtra", "LOCATION": "MH-NA"},
+    {"STATE": "Maharashtra", "LOCATION": "'Office 1, Mumbai'"},
     # {"STATE": "Odisha", "LOCATION": "OD-RO"},
     # {"STATE": "Puducherry", "LOCATION": "PU-PU"},
     # {"STATE": "Punjab", "LOCATION": "PJ-MO"},
     # {"STATE": "Rajasthan", "LOCATION": "RA-UD"},
-    {"STATE": "Tamil Nadu", "LOCATION": "TN-SL-Office 1"},
+    # {"STATE": "Tamil Nadu", "LOCATION": "TN-SL-Office 1"},
     # {"STATE": "Telangana", "LOCATION": "TE-HY"},
     # {"STATE": "Uttar Pradesh", "LOCATION": "UP-NO"},
     # {"STATE": "West Bengal", "LOCATION": "WB-SI"}
@@ -59,25 +59,25 @@ PERIODS = [
     # (2025, "January"),
     # (2025, "February"),
     # (2025, "March"),
-    (2025, "April"),
-    (2025, "May"),
-    (2025, "June"),
-    (2025, "July"),
-    (2025, "August"),
-    (2025, "September"),
-    (2025, "October"),
-    (2025, "November"),
-    (2025, "December"),
+    # (2025, "April"),
+    # (2025, "May"),
+    # (2025, "June"),
+    # (2025, "July"),
+    # (2025, "August"),
+    # (2025, "September"),
+    # (2025, "October"),
+    # (2025, "November"),
+    # (2025, "December"),
     
-    (2026, "January"),
-    (2026, "February"),
-    (2026, "March"),
+    # (2026, "January"),
+    # (2026, "February"),
+    # (2026, "March"),
     (2026, "April"),
     (2026, "May"),
-    (2026, "June"),
-    (2026, "July"),
-    (2026, "August"),
-    (2026, "September"),
+    # (2026, "June"),
+    # (2026, "July"),
+    # (2026, "August"),
+    # (2026, "September"),
 
 ]
 

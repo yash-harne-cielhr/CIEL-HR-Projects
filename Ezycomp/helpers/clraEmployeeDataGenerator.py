@@ -7,14 +7,14 @@ import pandas as pd
 # ========================
 # CONFIG
 # ========================
-PARENT_COMPANY = "QA Parent Company"
-ASSOCIATE_COMPANY = "QA Associate test 3"
+PARENT_COMPANY = "KT Company"
+ASSOCIATE_COMPANY = "KT Company"
 Establishment_type = "CLRA"
-NUM_EMPLOYEES = 10
+NUM_EMPLOYEES = 5
 
 LOCATION_GROUPS = [
-    # {"STATE": "Andhra Pradesh", "LOCATION": "AP-EL", "SUB_CODE": "CLRA_EMP_AP"},
-    # {"STATE": "Andhra Pradesh", "LOCATION": "AP-EL", "SUB_CODE": "CLRA_SUB_AP"},
+    {"STATE": "Maharashtra", "LOCATION": "Office 1, Mumbai", "SUB_CODE": "EMP_KT"},
+    {"STATE": "Maharashtra", "LOCATION": "Office 1, Mumbai", "SUB_CODE": "SUB_KT"},
     # {"STATE": "Assam", "LOCATION": "AS-GU", "SUB_CODE": "AS-ASE"},
     # {"STATE": "Assam", "LOCATION": "AS-GU", "SUB_CODE": "AS-ASS"},
 ]
@@ -25,34 +25,37 @@ OUTPUT_FOLDER = os.path.join(BASE_PATH, f"{ASSOCIATE_COMPANY}_{timestamp}")
 
 # Define all periods you want here (year, month_name)
 PERIODS = [
-    (2024, "January"),
-    (2024, "February"),
-    (2024, "March"),
-    (2024, "April"),
-    (2024, "May"),
-    (2024, "June"),
-    (2024, "July"),
-    (2024, "August"),
-    (2024, "September"),
-    (2024, "October"),
-    (2024, "November"),
-    (2024, "December"),
+    # (2024, "January"),
+    # (2024, "February"),
+    # (2024, "March"),
+    # (2024, "April"),
+    # (2024, "May"),
+    # (2024, "June"),
+    # (2024, "July"),
+    # (2024, "August"),
+    # (2024, "September"),
+    # (2024, "October"),
+    # (2024, "November"),
+    # (2024, "December"),
     
-    (2025, "January"),
-    (2025, "February"),
-    (2025, "March"),
-    (2025, "April"),
-    (2025, "May"),
-    (2025, "June"),
-    (2025, "July"),
-    (2025, "August"),
-    (2025, "September"),
-    (2025, "October"),
-    (2025, "November"),
-    (2025, "December"),
+    # (2025, "January"),
+    # (2025, "February"),
+    # (2025, "March"),
+    # (2025, "April"),
+    # (2025, "May"),
+    # (2025, "June"),
+    # (2025, "July"),
+    # (2025, "August"),
+    # (2025, "September"),
+    # (2025, "October"),
+    # (2025, "November"),
+    # (2025, "December"),
     
-    (2026, "January"),
-    (2026, "February")
+    # (2026, "January"),
+    # (2026, "February")
+    # (2026, "March"),
+    (2026, "April"),
+    (2026, "May"),
 ]
 
 

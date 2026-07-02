@@ -7,10 +7,10 @@ import pandas as pd
 # ========================
 # CONFIG
 # ========================
-PARENT_COMPANY = "CLRA Registers Management Pvt Ltd"
-ASSOCIATE_COMPANY = "CLRA Associates 1"
+PARENT_COMPANY = "KT Company"
+ASSOCIATE_COMPANY = "KT Company"
 Establishment_type = "Factory"
-NUM_EMPLOYEES = 150
+NUM_EMPLOYEES = 5
 
 # For Shops
 LOCATION_GROUPS = [
@@ -21,25 +21,25 @@ LOCATION_GROUPS = [
     # {"STATE": "Chhattisgarh", "LOCATION": "CT-RI"},
     # {"STATE": "Delhi", "LOCATION": "DH-RA"},
     # {"STATE": "Goa", "LOCATION": "GO-PA"},
-    {"STATE": "Gujarat", "LOCATION": "GU-AN"},
-    {"STATE": "Haryana", "LOCATION": "HA-FA"},
-    {"STATE": "Karnataka", "LOCATION": "KA-WF"},
+    # {"STATE": "Gujarat", "LOCATION": "Gujarat-1"},
+    # {"STATE": "Haryana", "LOCATION": "Haryana-1"},
+    # {"STATE": "Karnataka", "LOCATION": "Karnataka-1"},
     # {"STATE": "Kerala", "LOCATION": "KE-KO"},
     # {"STATE": "Madhya Pradesh", "LOCATION": "MP-IN"},
-    # {"STATE": "Maharashtra", "LOCATION": "MH-NA"},
+    {"STATE": "Maharashtra", "LOCATION": "'Office 1, Mumbai'"},
     # {"STATE": "Odisha", "LOCATION": "OD-RO"},
     # {"STATE": "Puducherry", "LOCATION": "PU-PU"},
     # {"STATE": "Punjab", "LOCATION": "PJ-MO"},
-    {"STATE": "Rajasthan", "LOCATION": "RA-UD"},
-    {"STATE": "Tamil Nadu", "LOCATION": "TN-TR"},
-    {"STATE": "Telangana", "LOCATION": "TE-HY"},
-    # {"STATE": "Uttar Pradesh", "LOCATION": "UP-NO"},
+    # {"STATE": "Rajasthan", "LOCATION": "Rajasthan-1"},
+    # {"STATE": "Tamil Nadu", "LOCATION": "Tamil Nadu-1"},
+    # {"STATE": "Telangana", "LOCATION": "Telangana-1"},
+    # # {"STATE": "Uttar Pradesh", "LOCATION": "UP-NO"},
     # {"STATE": "West Bengal", "LOCATION": "WB-SI"}
 ]
 
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 BASE_PATH = r"C:\Users\Yash Harne\OneDrive\Desktop\Ezycomp\Factory"
-OUTPUT_FOLDER = os.path.join(BASE_PATH, f"Stag_{ASSOCIATE_COMPANY}_{timestamp}")
+OUTPUT_FOLDER = os.path.join(BASE_PATH, f"Prod_{ASSOCIATE_COMPANY}_{timestamp}")
 
 # Define all periods you want here (year, month_name)
 PERIODS = [
@@ -56,24 +56,24 @@ PERIODS = [
     # (2024, "November"),
     # (2024, "December"),
     
-    (2025, "January"),
-    (2025, "February"),
-    (2025, "March"),
-    (2025, "April"),
-    (2025, "May"),
-    (2025, "June"),
-    (2025, "July"),
-    (2025, "August"),
-    (2025, "September"),
-    (2025, "October"),
-    (2025, "November"),
-    (2025, "December"),
+    # (2025, "January"),
+    # (2025, "February"),
+    # (2025, "March"),
+    # (2025, "April"),
+    # (2025, "May"),
+    # (2025, "June"),
+    # (2025, "July"),
+    # (2025, "August"),
+    # (2025, "September"),
+    # (2025, "October"),
+    # (2025, "November"),
+    # (2025, "December"),
     
-    (2026, "January"),
-    (2026, "February"),
-    (2026, "March"),
+    # (2026, "January"),
+    # (2026, "February"),
+    # (2026, "March"),
     (2026, "April"),
-    (2026, "May"),
+    (2026, "May")
     # (2026, "June"),
     # (2026, "July"),
     # (2026, "August"),
@@ -534,7 +534,7 @@ def generate_wages(employees, year, month):
             "ESI Time": "" if esi == 0 else random.choice(["01:00 AM", "07:10 AM", "08:40 PM", "12:15 PM", ""]),
             "ESI Place": "" if esi == 0 else random.choice(["Mumbai", "Pune", "Nagpur", "Thane", "Bangalore", "Bhopal", ""]),
             "ESI Date Of Payment": "" if esi == 0 else random_date_in_month(year, month_num).strftime("%d-%m-%Y") if random.random() < 0.8 else "",
-            # "Work Days": 20,
+            # "Work Days": 26,
             "Overtime Paid Date": (random_date_in_month(year, month_num).strftime("%d-%m-%Y")if random.random() < 0.8 else ""),
             "TDS": random.randint(0, 5000) if random.random() < 0.8 else 0,
         })
