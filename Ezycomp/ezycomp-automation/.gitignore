@@ -1,0 +1,9 @@
+.env.internal
+.env.staging
+.env.production
+node_modules/
+dist/
+reports/
+test-results/
+playwright-report/
+.auth/

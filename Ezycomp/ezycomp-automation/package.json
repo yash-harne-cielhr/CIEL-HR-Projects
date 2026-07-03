@@ -1,0 +1,22 @@
+{
+  "name": "ezycomp-automation",
+  "version": "1.0.0",
+  "description": "UI Automation for EzyComp - starting with Login",
+  "scripts": {
+    "test": "playwright test",
+    "test:internal": "cross-env ENV=internal playwright test",
+    "test:staging": "cross-env ENV=staging playwright test",
+    "test:production": "cross-env ENV=production playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report reports/html-report",
+    "codegen": "playwright codegen"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5"
+  }
+}
