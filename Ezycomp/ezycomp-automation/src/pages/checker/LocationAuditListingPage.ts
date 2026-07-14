@@ -11,11 +11,12 @@ export class LocationAuditListingPage extends BasePage {
 
   // Role label shown after login. TODO: confirm this selector is unique
   // once more surrounding HTML is available.
-  private get roleLabel(): Locator {
-    return this.page.locator('div.text-sm.text-gray-500');
+  private roleButton(expectedRole: string): Locator {
+  return this.page.getByRole('button', { name: new RegExp(`${expectedRole}$`) });
   }
 
+
   async assertRoleLabel(expectedRole: string): Promise<void> {
-    await expect(this.roleLabel).toHaveText(expectedRole);
+  await expect(this.roleButton(expectedRole)).toBeVisible();
   }
 }

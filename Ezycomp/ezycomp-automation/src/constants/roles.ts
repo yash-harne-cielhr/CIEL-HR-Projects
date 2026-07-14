@@ -4,6 +4,7 @@
  * scope) each role maps to its own dedicated test account.
  */
 export enum Role {
+  SUPERADMIN = 'SUPERADMIN',     // can do everything, including user management
   VENDOR_USER = 'VENDOR_USER',       // uploads evidence
   VENDOR_ADMIN = 'VENDOR_ADMIN',     // reviews evidence, submits to auditor
   AUDITOR_USER = 'AUDITOR_USER',     // reviews, marks Compliant/Not Compliant

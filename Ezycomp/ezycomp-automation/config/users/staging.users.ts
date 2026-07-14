@@ -15,6 +15,10 @@ export interface Credentials {
  * Tests never import this directly; they go through UserManager.
  */
 export const stagingUsers: Record<Role, Credentials> = {
+  [Role.SUPERADMIN]: {
+    username: process.env.SUPERADMIN_USERNAME ?? '',
+    password: process.env.SUPERADMIN_PASSWORD ?? '',
+  },
   [Role.VENDOR_USER]: {
     username: process.env.VENDOR_USER_USERNAME ?? '',
     password: process.env.VENDOR_USER_PASSWORD ?? '',

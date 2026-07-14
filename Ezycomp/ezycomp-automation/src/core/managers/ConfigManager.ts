@@ -41,8 +41,4 @@ export class ConfigManager {
   get reactAppUrl(): string {
     return this.config.reactAppUrl.replace(/\/+$/, '');
   }
-
-  get testUser(): { username: string; password: string } {
-    return this.config.testUser;
-  }
 }

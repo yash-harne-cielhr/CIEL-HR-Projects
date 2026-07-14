@@ -2,6 +2,7 @@ import { Page } from '@playwright/test';
 import { BasePage } from '../../core/base/BasePage';
 import { ReactAppRoutes } from '../../constants/routes';
 
+
 export interface Credentials {
   username: string;
   password: string;
